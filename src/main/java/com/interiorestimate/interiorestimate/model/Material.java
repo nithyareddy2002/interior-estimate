@@ -16,13 +16,16 @@ public class Material {
     @Column(name="id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name="material_type_id", nullable = false)
-    private MaterialType materialType;
+//    @ManyToOne
+//    @JoinColumn(name="material_type_id", nullable = false)
+//    private MaterialType materialType;
+//
+//    @ManyToOne
+//    @JoinColumn(name="brand_id", nullable = false)
+//    private Brand brand;
 
-    @ManyToOne
-    @JoinColumn(name="brand_id", nullable = false)
-    private Brand brand;
+    @Column(name="name")
+    private String name;
 
     @Column(name="cost")
     private double cost;

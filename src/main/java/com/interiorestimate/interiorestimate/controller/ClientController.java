@@ -18,10 +18,6 @@ public class ClientController {
         return "Hi ra..!!!";
     }
 
-   @GetMapping("/finishtypes")
-    public List<MaterialType> getFinishTypes() {
-       return interiorEstimateService.getFinishTypes();
-   }
 
    @GetMapping("/clientbynumber")
     public List<Client> getClientByPhoneNumber(@RequestParam(name="phoneNumber",required=false) Integer phoneNumber){
@@ -43,24 +39,14 @@ public class ClientController {
         return interiorEstimateService.getProperties();
    }
 
-   @GetMapping("/rooms")
-    public List<RoomType> getRooms(){
-        return interiorEstimateService.getRooms();
-   }
-
-   @GetMapping("/units/{roomId}")
-    public List<UnitType> getUnitsByRoomId(@PathVariable("roomId") int roomId){
-        return interiorEstimateService.getUnitsByRoomId(roomId);
-   }
-
-//   @GetMapping("/estimate/{clientId}/{propertyAddressId}")
-//    public Estimate getEstimateByClientIdAndPropertyAddressId(@PathVariable("clientId")int clientId,@PathVariable("propertyAddressId") int propertyAddressId){
-//        return interiorEstimateService.getEstimateByClientIdAndPropertyAddressId(clientId,propertyAddressId);
+//   @GetMapping("/rooms")
+//    public List<RoomType> getRooms(){
+//        return interiorEstimateService.getRooms();
 //   }
 
-  @PostMapping("/updatefinishtype")
-    public MaterialType addFinishType(@RequestBody MaterialType materialType){
-        return interiorEstimateService.updateFinishType(materialType);
+  @PostMapping("/updateclient")
+    public Client addClient(@RequestBody Client client){
+        return interiorEstimateService.updateClient(client);
   }
 
 }

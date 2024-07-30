@@ -10,13 +10,19 @@ import {ClientList} from "../model/clientList";
 export class ClientService {
 
   private url: string;
+  private posturl:string;
   // private sclient: ClientList[]=[]
 
   constructor(private http:HttpClient) {
     this.url='/rest/client';
+    this.posturl='/rest/updateclient';
   }
 
    public getClient(id: number): Observable<ClientList> {
      return this.http.get<ClientList>(this.url + "/" + id);
+   }
+
+   public save(client:Client){
+    return this.http.post<Client>(this.posturl,client);
    }
 }

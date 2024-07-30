@@ -1,15 +1,21 @@
 package com.interiorestimate.interiorestimate.model;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name="client")
 public class Client {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Integer id;
 
     @Column(name="last_name")
     private String lastName;
@@ -26,62 +32,16 @@ public class Client {
     @Column(name="address")
     private String address;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(targetEntity = Property.class, mappedBy = "client", cascade = CascadeType.ALL)
     private List<Property> properties;
 
-    public int getId() {
-        return id;
+    public void addToProperty(Property property) {
+        this.getProperties().add(property);
+        property.setClient(this);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public List<Property> getProperties() {
-        return properties;
-    }
-
-    public void setProperties(List<Property> properties) {
-        this.properties = properties;
+    public void removeFromProperties(Property property) {
+        this.getProperties().remove(property);
+        property.setClient(this);
     }
 }

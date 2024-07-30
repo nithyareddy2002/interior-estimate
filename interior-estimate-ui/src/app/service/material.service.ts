@@ -1,21 +1,20 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {PropertyType} from "../model/propertyType";
+import {ClientList} from "../model/clientList";
 import {Material} from "../model/material";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PropertytypeService {
+export class MaterialService {
 
-  private url:string
+  private url: string;
   constructor(private http:HttpClient) {
-    this.url="/rest/property/getpropertytypes"
+    this.url="/rest/material/getmaterial"
   }
 
-  public findAll(): Observable<PropertyType[]> {
-    return this.http.get<PropertyType[]>(this.url);
+  public findAll(): Observable<Material[]> {
+    return this.http.get<Material[]>(this.url);
   }
-
 }

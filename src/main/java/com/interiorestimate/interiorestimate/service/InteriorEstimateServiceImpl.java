@@ -11,31 +11,16 @@ import java.util.List;
 public class InteriorEstimateServiceImpl implements InteriorEstimateService {
 
     @Autowired
-    MaterialTypeRepository materialTypeRepository;
-
-    @Autowired
     ClientRepository clientRepository;
 
     @Autowired
-    PropertyRepository propertyAddressRepo;
+    PropertyRepository propertyRepository;
 
     @Autowired
     PropertyTypeRepository propertyTypeRepository;
 
     @Autowired
     RoomTypeRepository roomTypeRepository;
-
-    @Autowired
-    UnitTypeRepository unitTypeRepository;
-
-//    @Autowired
-//    EstimateRepository estimateRepository;
-
-
-    @Override
-    public List<MaterialType> getFinishTypes() {
-        return materialTypeRepository.findAll();
-    }
 
     @Override
     public List<Client> getClientByPhoneNumber(Integer phoneNumber) {
@@ -49,7 +34,7 @@ public class InteriorEstimateServiceImpl implements InteriorEstimateService {
     public Client getClientById(int id){ return clientRepository.findById(id);}
     @Override
     public List<Property> getPropertiesByClientId(int clientId) {
-        return propertyAddressRepo.findAllByClientId(clientId);
+        return propertyRepository.findAllByClientId(clientId);
     }
 
     @Override
@@ -57,23 +42,30 @@ public class InteriorEstimateServiceImpl implements InteriorEstimateService {
         return propertyTypeRepository.findAll();
     }
 
-    @Override
-    public List<RoomType> getRooms(){
-        return roomTypeRepository.findAll();
-    }
+//    @Override
+//    public List<RoomTypeService> getRooms(){
+//        return roomTypeRepository.findAll();
+//    }
 
-    @Override
-    public List<UnitType> getUnitsByRoomId(int roomId){
-        return unitTypeRepository.findAllByRoomId(roomId);
-    }
+//    @Override
+//    public List<UnitType> getUnitsByRoomId(int roomId){
+//        return unitTypeRepository.findAllByRoomId(roomId);
+//    }
 
 //    @Override
 //    public Estimate getEstimateByClientIdAndPropertyAddressId(int clientId,int propertyAddressId){
 //        return estimateRepository.findAllByClientIdAndPropertyAddressId(clientId,propertyAddressId);}
 
     @Override
-    public MaterialType updateFinishType(MaterialType materialType){
-        return materialTypeRepository.save(materialType);
+    public Client updateClient(Client client){
+//        Client client1 = clientRepository.save(client);
+//        client.getProperties().forEach(property -> {
+//            property.setClient(client1);
+//            propertyRepository.save(property);
+//        });
+        return clientRepository.save(client);
+        //return client1;
     }
+
 
 }

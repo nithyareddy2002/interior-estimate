@@ -5,30 +5,22 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.EnumType.STRING;
+
 @Entity
 @Table(name="unit")
 public class Unit
 {
+
     @Getter
     @Id
     @Column(name="id")
     private int id;
 
-//    @OneToOne
-//    @JoinColumn(name = "client_id", referencedColumnName = "id")
-//    private Client client;
-//
-//    @OneToOne
-//    @JoinColumn(name="property_address_id", referencedColumnName = "id")
-//    private Property property;
-//
-//    @OneToOne
-//    @JoinColumn(name="room_id",referencedColumnName = "id")
-//    private RoomType roomType;
-//
-//    @OneToOne
-//    @JoinColumn(name="unit_id",referencedColumnName = "id")
-//    private UnitType unitType;
+    @Enumerated(EnumType.STRING)
+    private Category category;
+    @Column(name="unit_name")
+    private String unitName;
 
     @ManyToOne
     @JoinColumn(name="room_id", nullable = false)
@@ -53,6 +45,10 @@ public class Unit
 
     @Column(name="quantity")
     private int quantity;
+
+//    @OneToOne
+//    @JoinColumn(name="unit_type_id",referencedColumnName = "id")
+//    private UnitType unitType;
 
 //    @Column(name="price_per_sft")
 //    private double pricePerSft;
@@ -186,5 +182,30 @@ public class Unit
 
     public void setModifiedTime(LocalDateTime modifiedTime) {
         this.modifiedTime = modifiedTime;
+    }
+
+//    public UnitType getUnitType() {
+//        return unitType;
+//    }
+//
+//    public void setUnitType(UnitType unitType) {
+//        this.unitType = unitType;
+//    }
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category= category;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
     }
 }

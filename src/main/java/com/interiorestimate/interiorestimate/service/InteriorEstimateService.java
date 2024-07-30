@@ -5,7 +5,6 @@ import com.interiorestimate.interiorestimate.model.*;
 import java.util.List;
 
 public interface InteriorEstimateService {
-    public List<MaterialType> getFinishTypes();
 
     public List<Client> getClientByPhoneNumber(Integer phoneNumber);
 
@@ -15,12 +14,13 @@ public interface InteriorEstimateService {
 
     public List<PropertyType> getProperties();
 
-    public List<RoomType> getRooms();
+    //public List<RoomTypeService> getRooms();
 
-    public List<UnitType> getUnitsByRoomId(int roomId);
-
+//    public List<UnitType> getUnitsByRoomId(int roomId);
+//
 //    public Estimate getEstimateByClientIdAndPropertyAddressId(int clientId,int propertyAddressId);
 
-    public MaterialType updateFinishType(MaterialType materialType);
+    public Client updateClient(Client client);
+
 }
 

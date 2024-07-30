@@ -10,7 +10,7 @@ export class Property {
   postalCode: String;
   status: String;
   propertyType: PropertyType;
-  room:Room;
+  rooms:Room[];
 
   constructor() {
     this.id=0;
@@ -20,6 +20,6 @@ export class Property {
     this.postalCode="";
     this.status="";
     this.propertyType = new PropertyType();
-    this.room=new Room();
+    this.rooms=[];
   }
 }

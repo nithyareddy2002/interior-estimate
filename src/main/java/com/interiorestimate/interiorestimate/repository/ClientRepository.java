@@ -13,5 +13,4 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
 
     Client findById(int id);
 
-
 }

@@ -46,4 +46,8 @@ export class ClientListComponent implements OnInit{
     })
   }
 
+  onDelete(){
+
+  }
+
 }

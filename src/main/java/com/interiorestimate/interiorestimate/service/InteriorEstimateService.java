@@ -14,13 +14,9 @@ public interface InteriorEstimateService {
 
     public List<PropertyType> getProperties();
 
-    //public List<RoomTypeService> getRooms();
-
-//    public List<UnitType> getUnitsByRoomId(int roomId);
-//
-//    public Estimate getEstimateByClientIdAndPropertyAddressId(int clientId,int propertyAddressId);
-
     public Client updateClient(Client client);
+
+    void deleteClient(int id);
 
 }
 

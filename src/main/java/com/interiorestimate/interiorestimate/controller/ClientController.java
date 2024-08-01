@@ -30,5 +30,10 @@ public class ClientController {
         return interiorEstimateService.updateClient(client);
   }
 
+  @DeleteMapping("/{id}")
+    public void deleteClient(@PathVariable("id") int id){
+       interiorEstimateService.deleteClient(id);
+  }
 }
+
 

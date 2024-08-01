@@ -7,7 +7,5 @@ export class PropertyType {
     this.id=0;
     this.name="";
     this.isObsolete=false;
-
   }
-
 }

@@ -104,6 +104,7 @@ export class ClientComponent implements OnInit {
 
   onSubmit(){
     console.log("Entered on sav");
+    console.log(this.sClient);
     this.sClientService.save(this.sClient).subscribe({
       next:(data: any)=>{
         console.log("Entered response");
@@ -117,15 +118,8 @@ export class ClientComponent implements OnInit {
     this.sClient.properties.push(new Property());
   }
 
-  onAddRoom(id:number){
-    console.log("Entered OnRoom Method:"+id);
-    console.log(this.sClient.properties[id]);
-    console.log(this.sClient.properties.length);
-    for(let i=0;i<this.sClient.properties.length;i++){
-      if(this.sClient.properties[i].id==id){
-        this.sClient.properties[i].rooms.push(new Room());
-      }
-    }
+  onAddRoom(pIndex:number){
+    this.sClient.properties[pIndex].rooms.push(new Room());
   }
 
   // onAddUnit(id:number){
@@ -140,19 +134,9 @@ export class ClientComponent implements OnInit {
   //   }
   // }
 
-  onAddUnit(pid:number,rid:number){
+  onAddUnit(pIndex:number,rIndex:number){
     console.log("Entered on unit method");
-    for(let i=0;i<this.sClient.properties.length;i++)
-    {
-      if(this.sClient.properties[i].id==pid){
-        for(let j=0;j<this.sClient.properties[i].rooms.length;j++){
-          if(this.sClient.properties[i].rooms[j].id==rid){
-            console.log(this.sClient.properties[i].rooms[j]);
-            this.sClient.properties[i].rooms[j].units.push(new Unit());
-          }
-        }
-      }
-    }
+    this.sClient.properties[pIndex].rooms[rIndex].units.push(new Unit());
   }
 
   protected readonly Object = Object;

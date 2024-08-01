@@ -11,7 +11,7 @@ export class MaterialService {
 
   private url: string;
   constructor(private http:HttpClient) {
-    this.url="/rest/material/getmaterial"
+    this.url="/rest/material"
   }
 
   public findAll(): Observable<Material[]> {

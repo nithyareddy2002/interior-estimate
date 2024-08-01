@@ -15,7 +15,7 @@ export class ClientService {
 
   constructor(private http:HttpClient) {
     this.url='/rest/client';
-    this.posturl='/rest/updateclient';
+    this.posturl='/rest/client';
   }
 
    public getClient(id: number): Observable<ClientList> {

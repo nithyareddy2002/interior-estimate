@@ -11,7 +11,7 @@ export class PropertytypeService {
 
   private url:string
   constructor(private http:HttpClient) {
-    this.url="/rest/property/getpropertytypes"
+    this.url="/rest/property-types"
   }
 
   public findAll(): Observable<PropertyType[]> {

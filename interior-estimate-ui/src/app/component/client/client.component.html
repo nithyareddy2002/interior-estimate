@@ -1,150 +1,189 @@
-<style>
-  td{
-    text-align: left;
-  }
-  table, th, td {
-    border: 1px solid;
-  }
-  table {
-    border-collapse: collapse;
-    margin-left: auto;
-    margin-right: auto;
 
-  }
-  th,td{
-    padding:15px;
-  }
-</style>
-
-<div class="card my-5">
-  <div class="card-body">
     <div>
-      <div>
+      <div class="row">
+        <div class="col">
         <label for="firstName">
           First Name
         </label>
-        <input id="firstName" type="text" [(ngModel)]="sClient.firstName">
+        <input id="firstName" type="text" class="form-control" [(ngModel)]="sClient.firstName">
+        </div>
+        <div class="col">
         <label for="lastName">
           Last Name
         </label>
-        <input id="lastName" type="text" [(ngModel)]="sClient.lastName">
+        <input id="lastName" type="text" class="form-control" [(ngModel)]="sClient.lastName">
+        </div>
+        <div class="col">
         <label for="email">
           Email
         </label>
-        <input id="email" type="text" [(ngModel)]="sClient.email">
+        <input id="email" type="text" class="form-control" [(ngModel)]="sClient.email">
+          </div>
+        </div>
+
+      <br>
+      <div class ="row">
+        <div class ="col">
         <label for="phoneNumber">
           Phone Number
         </label>
-        <input id="phoneNumber" type="number" [(ngModel)]="sClient.phoneNumber">
+        <input id="phoneNumber" type="number" class="form-control" [(ngModel)]="sClient.phoneNumber">
+          </div>
+        <div class="col">
         <label for="address">
           Address
         </label>
-        <input id="address" type="text" [(ngModel)]="sClient.address">
+        <input id="address" type="text" class="form-control" [(ngModel)]="sClient.address">
+      </div>
       </div>
 
-
-
-    <mat-accordion>
-      <br><button class="button" type="submit" (click)="onAddProperty()" >Add Property</button><br><br>
+      <mat-accordion class="accordion accordion-flush">
+      <br><button class="btn btn-primary" type="submit" (click)="onAddProperty()" >Add Property</button><br><br>
       <h5>Properties ({{sClient.properties.length}})</h5>
-      <mat-expansion-panel hideToggle *ngFor="let p of sClient.properties" >
-        <mat-expansion-panel-header>
-<!--          <mat-panel-title>Property - {{p.propertyType.name}} </mat-panel-title>-->
+      <mat-expansion-panel hideToggle *ngFor="let p of sClient.properties; index as pIndex" class="accordion-item">
+        <mat-expansion-panel-header class="accordion-header" class="accordion-button collapsed">
           <mat-panel-title>
-            Property - {{p.propertyType.name}}
+            Property
           </mat-panel-title>
           <mat-panel-description>
             {{p.addressLine1}}{{p.addressLine2}}{{p.city}}{{p.postalCode}}
           </mat-panel-description>
         </mat-expansion-panel-header>
 
-        <mat-accordion>
+        <mat-accordion class="accordion accordion-flush">
 
+          <br>
+          <div class="form-group row">
+            <div class="col">
           <label for="propertyname">Property Type</label>
-          <select name="propertyname" id="propertyname" [(ngModel)]="p.propertyType.name">
-            <option *ngFor="let t of propertyTypes">{{t.name}}</option>
+          <select name="propertyname" id="propertyname" [(ngModel)]="p.propertyTypeId" class="form-control">
+            <option *ngFor="let t of propertyTypes" [value]="t.id">{{t.name}}</option>
           </select>
+              </div>
+            <div class="col">
           <label for="addressline1">
             Address Line1
           </label>
-          <input id="addressline1" type="text" [(ngModel)]="p.addressLine1">
+          <input id="addressline1" type="text" class="form-control" [(ngModel)]="p.addressLine1">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col">
           <label for="addressline2">
             Address Line2
           </label>
-          <input id="addressline2" type="text" [(ngModel)]="p.addressLine2">
+          <input id="addressline2" type="text" class="form-control" [(ngModel)]="p.addressLine2">
+            </div>
+            <div class="col">
           <label for="city">
             City
           </label>
-          <input id="city" type="text" [(ngModel)]="p.city">
+          <input id="city" type="text" class="form-control" [(ngModel)]="p.city">
+            </div>
+            <div class="col">
           <label for="postalcode">
             Postal Code
           </label>
-          <input id="postalcode" type="number" [(ngModel)]="p.postalCode">
+          <input id="postalcode" type="number" class="form-control" [(ngModel)]="p.postalCode">
+            </div>
+          </div>
 
-          <br><br><button class="button" type="submit" (click)="onAddRoom(p.id)" >Add Room</button><br><br>
+          <br><br><button class="btn btn-primary" type="submit" (click)="onAddRoom(pIndex)" >Add Room</button><br><br>
           <h5>Rooms ({{p.rooms.length}})</h5>
 
-          <mat-expansion-panel hideToggle *ngFor="let r of p.rooms" >
-            <mat-expansion-panel-header>
-              <mat-panel-title>Room -  {{r.roomType.name}} </mat-panel-title>
+          <mat-expansion-panel hideToggle *ngFor="let r of p.rooms;  index as rIndex" class="accordion-item">
+            <mat-expansion-panel-header class="accordion-header" class="accordion-button collapsed">
+              <mat-panel-title>Room</mat-panel-title>
 
             </mat-expansion-panel-header>
 <!--            <p *ngFor="let r of p.rooms">{{r.roomType.name}}</p>-->
 
-            <mat-accordion>
+            <mat-accordion class="accordion accordion-flush">
+              <br>
+              <div class="row">
+                <div class="col">
               <label for="roomname">Room Type</label>
-              <select name="roomname" id="roomname" [(ngModel)]="r.roomType.name">
-                <option *ngFor="let t of roomTypes">{{t.name}}</option>
+              <select name="roomname" id="roomname" [(ngModel)]="r.roomTypeId" class="form-control">
+                <option *ngFor="let t of roomTypes" [value]=t.id>{{t.name}}</option>
               </select>
 
-              <br><br><button class="button" type="submit" (click)="onAddUnit(p.id,r.id)" >Add Unit</button><br><br>
+                </div>
+              </div>
 
-              <mat-expansion-panel hideToggle *ngFor="let u of r.units" >
-                <mat-expansion-panel-header>
+              <br><br><button class="btn btn-primary" type="submit" (click)="onAddUnit(pIndex,rIndex)" >Add Unit</button><br><br>
+
+              <mat-expansion-panel hideToggle *ngFor="let u of r.units" class="accordion-item">
+                <mat-expansion-panel-header class="accordion-header" class="accordion-button collapsed">
                   <mat-panel-title>Unit - {{u.unitName}} </mat-panel-title>
                 </mat-expansion-panel-header>
 
+                <div class="row">
+                  <div class="col">
+                    <br>
                 <label for="unitName">Unit Name</label>
-                <input id="unitName" type="text" [(ngModel)]="u.unitName">
-
-                <div>
+                <input id="unitName" type="text" class="form-control" [(ngModel)]="u.unitName">
+                  </div>
+                  <div class="col">
+                    <br>
                   <label for="category">Category</label>
-                  <select name="category" id="category" [(ngModel)]="u.category">
+                  <select name="category" id="category" class="form-control" [(ngModel)]="u.category">
                     <option *ngFor="let c of categories">{{c}}</option>
                   </select>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <br>
                   <label for="length">
                     Length
                   </label>
-                  <input id="length" type="text" [(ngModel)]="u.length">
+                  <input id="length" type="text" class="form-control"[(ngModel)]="u.length">
+                  </div>
+                  <div class="col">
+                    <br>
                   <label for="height">
                     Height
                   </label>
-                  <input id="height" type="text" [(ngModel)]="u.height">
+                  <input id="height" type="text" class="form-control" [(ngModel)]="u.height">
+                  </div>
+                  <div class="col">
+                    <br>
                   <label for="depth">
                     Depth
                   </label>
-                  <input id="depth" type="text" [(ngModel)]="u.depth">
+                  <input id="depth" type="text" class="form-control" [(ngModel)]="u.depth">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <br>
                   <label for="quantity">
                     Quantity
                   </label>
-                  <input id="quantity" type="text" [(ngModel)]="u.quantity">
+                  <input id="quantity" type="text" class="form-control" [(ngModel)]="u.quantity">
+                  </div>
 
+                  <div class="col">
+                    <br>
                   <label for="material">
                     Material
                   </label>
-                  <select name="material" id="material" [(ngModel)]="u.material.name">
-                    <option *ngFor="let m of materials">{{m.name}}</option>
+                  <select name="material" id="material" class="form-control" [(ngModel)]="u.materialId">
+                    <option *ngFor="let m of materials" [value]="m.id">{{m.name}}</option>
                   </select>
-
+                  </div>
+                  <div class="col">
+                    <br>
                   <label for="finish">
                     Finish
                   </label>
-                  <select name="finish" id="finish" [(ngModel)]="u.finish.name">
-                    <option *ngFor="let m of materials">{{m.name}}</option>
+                  <select name="finish" id="finish" class="form-control" [(ngModel)]="u.finishId">
+                    <option *ngFor="let m of materials" [value]="m.id">{{m.name}}</option>
                   </select>
-
-
+                  </div>
                 </div>
+
               </mat-expansion-panel>
             </mat-accordion>
           </mat-expansion-panel>
@@ -153,8 +192,7 @@
     </mat-accordion>
 
 
-      <button class="button" type="submit" (click)="onSubmit()" >Save</button>
+    <br>
+      <button class="btn btn-primary" type="submit" (click)="onSubmit()" >Save</button>
     </div><br><br>
 
-</div>
-</div>

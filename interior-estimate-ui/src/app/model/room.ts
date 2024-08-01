@@ -4,12 +4,12 @@ import {Unit} from "./unit";
 export class Room {
 
   id: number;
-  roomType: RoomType;
+  roomTypeId: number;
   units: Unit[];
 
   constructor() {
-    this.id=0;
-    this.roomType=new RoomType();
+    this.id=null as any;
+    this.roomTypeId=null as any;
     this.units = [];
   }
 }

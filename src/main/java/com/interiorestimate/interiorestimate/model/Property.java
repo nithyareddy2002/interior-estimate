@@ -2,6 +2,7 @@ package com.interiorestimate.interiorestimate.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,21 +29,19 @@ public class Property {
     private String city;
 
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="client_id")
+    @ManyToOne()
+    @JoinColumn(name="client_id", nullable = false)
     private Client client;
 
     @Column(name="postal_code")
     private int postalCode;
 
-    @ManyToOne
-    @JoinColumn(name = "property_type_id", nullable = false)
-    private PropertyType propertyType;
+    @Column(name = "property_type_id")
+    private Integer propertyTypeId;
 
     @Column(name="status")
     private String status;
 
-    @Getter
     @OneToMany(mappedBy = "property")
     private List<Room> rooms;
 

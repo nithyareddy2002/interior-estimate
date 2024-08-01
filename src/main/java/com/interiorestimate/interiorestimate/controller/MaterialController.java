@@ -19,7 +19,7 @@ public class MaterialController {
     @Autowired
     MaterialService materialService;
 
-    @GetMapping("/getmaterial")
+    @GetMapping
     public List<Material> getMaterials(){
         return materialService.getMaterials();
     }

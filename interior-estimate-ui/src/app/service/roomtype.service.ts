@@ -12,7 +12,7 @@ export class RoomtypeService {
   private url:string;
 
   constructor(private http:HttpClient) {
-    this.url="/rest/room/getroomtypes"
+    this.url="/rest/room-type"
   }
 
   public findAll(): Observable<RoomType[]> {

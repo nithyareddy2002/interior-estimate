@@ -9,17 +9,17 @@ export class Property {
   city:String;
   postalCode: String;
   status: String;
-  propertyType: PropertyType;
+  propertyTypeId: number;
   rooms:Room[];
 
   constructor() {
-    this.id=0;
+    this.id=null as any;
     this.addressLine1="";
     this.addressLine2="";
     this.city="";
     this.postalCode="";
     this.status="";
-    this.propertyType = new PropertyType();
+    this.propertyTypeId = null as any;
     this.rooms=[];
   }
 }

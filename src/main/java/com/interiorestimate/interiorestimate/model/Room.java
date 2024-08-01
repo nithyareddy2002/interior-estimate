@@ -1,52 +1,35 @@
 package com.interiorestimate.interiorestimate.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name="room")
 public class Room {
 
     @Getter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name="id")
-    private int id;
+    private Integer id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="property_id", nullable = false)
     private Property property;
 
-//    @Column(name="room_type_id")
-//    private int roomTypeId;
-
     @Getter
-    @OneToOne()
-    @JoinColumn(name="room_type_id", referencedColumnName = "id")
-    private RoomType roomType;
+
+    @Column(name="room_type_id")
+    private Integer roomTypeId;
 
     @Getter
     @OneToMany(mappedBy = "room")
     private List<Unit> units;
-
-    public void setUnits(List<Unit> units) {
-        this.units = units;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-//    public int getRoomTypeId() {
-//        return roomTypeId;
-//    }
-//
-//    public void setRoomTypeId(int roomTypeId) {
-//        this.roomTypeId = roomTypeId;
-//    }
-
-    public void setRoomType(RoomType roomType) {
-        this.roomType = roomType;
-    }
 }

@@ -12,7 +12,7 @@ export class ClientListService {
 
   private url: string;
   constructor(private http:HttpClient) {
-    this.url=`/rest/clientbynumber`
+    this.url=`/rest/client`
   }
 
   public findAll(): Observable<ClientList[]> {

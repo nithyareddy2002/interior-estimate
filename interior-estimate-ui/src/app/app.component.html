@@ -181,18 +181,19 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        <div class="card bg-dark my-5">
-          <div class="card-body">
-            <mat-toolbar>
-              <button routerLink="/clients">Client List</button>
-            </mat-toolbar>
+<!--      <div class="col-md-12">-->
+<!--        <div class="card bg-dark my-5">-->
+          <div class="card-body" >
+            <mat-toolbar class="navbar navbar-light" style="background-color: #e3f2fd;">
+<!--              <button routerLink="/clients" class="btn btn-info">Client List</button>-->
+              <a routerLink="/clients" class="navbar-brand">Client List</a>
+            </mat-toolbar><br><br>
           </div>
         </div>
         <router-outlet></router-outlet>
       </div>
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
 </main>
 
 

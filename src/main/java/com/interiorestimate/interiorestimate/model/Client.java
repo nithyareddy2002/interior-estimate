@@ -1,7 +1,6 @@
 package com.interiorestimate.interiorestimate.model;
 
 import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,7 +31,7 @@ public class Client {
     @Column(name="address")
     private String address;
 
-    @OneToMany(targetEntity = Property.class, mappedBy = "client", cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Property.class, mappedBy = "client")
     private List<Property> properties;
 
     public void addToProperty(Property property) {
